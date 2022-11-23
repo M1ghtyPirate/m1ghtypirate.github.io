@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="icon" href="favicon.ico" />
+		<link rel="manifest" href="mypwa.webmanifest" />
+		<script src="script.js" defer></script>
+		<title>PWA. Совков В. В., зЛПб-Исит-18-2</title>
+	</head>
+	<body class="bodybg">
+		<div class="mysite">
+			<div class="header">
+				<h1>Краткая информация о языке программирования C#.</h1>
+				<button class="mybutton" id="notifications">Получать уведомления</button>
+				<button class="mybutton" id="installbutton">Установить</button>
+			</div>
+			<div class="content">
+				<div class="column">
+					<p>
+						<a href="https://learn.microsoft.com/ru-ru/dotnet/" target="_blank">
+							<img id="logo" src="./img/c-sharp-dot-net.png" alt="C# .Net">
+						</a>
+					</p>
+					<p>
+						C# (произносится си шарп) — объектно-ориентированный язык программирования общего назначения. Разработан в 1998—2001 годах группой инженеров компании Microsoft под руководством Андерса Хейлсберга и Скотта Вильтаумота как язык разработки приложений для платформы Microsoft .NET Framework и .NET Core.
+					</p>
+					<p>
+						C# относится к семье языков с C-подобным синтаксисом, из них его синтаксис наиболее близок к C++ и Java. Язык имеет статическую типизацию, поддерживает полиморфизм, перегрузку операторов (в том числе операторов явного и неявного приведения типа), делегаты, атрибуты, события, переменные, свойства, обобщённые типы и методы, итераторы, анонимные функции с поддержкой замыканий, LINQ, исключения, комментарии в формате XML.
+					</p>
+				</div>
+				<div class="column">
+					<p>На протяжении разработки языка C# было выпущено несколько его версий:</p>
+					<table>
+						<tr>
+							<th>Версия</th>
+							<th>Нововведения</th>
+						</tr>
+						<tr>
+							<td>C# 2.0</td>
+							<td>
+								<ul>
+									<li>Обобщённые типы (generics)</li>
+									<li>Итераторы и ключевое слово <i>yield</i></li>
+									<li>Анонимные методы</li>
+									<li>Оператор <i>null</i>-объединения</li>
+									<li><i>Nullable</i>-типы</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td>C# 5.0</td>
+							<td>
+								<ul>
+									<li>Шаблон <i>TAP</i></li>
+									<li>Асинхронные методы <i>async</i> и <i>await</i></li>
+									<li>Сведения о вызывающем объекте</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td>C# 10.0</td>
+							<td>
+								<ul>
+									<li>Добавление <i>role="alert"</i> в атрибуты сообщений</li>
+									<li>Обновления <i>Counter</i> компонент для добавления <i>role="status"</i></li>
+									<li>Замена ul в <i>NavBar</i> компонент для <i>nav</i></li>
+									<li>Новое название кнопки переключения <i>NavBar</i></li>
+									<li>Переход к использованию более семантической разметки</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+					<p>Ресурсы по языку C#:</p>
+					<p>
+						<a href="https://learn.microsoft.com/ru-ru/dotnet/csharp/" target="_blank">Документация по C#</a><br>
+						<a href="https://visualstudio.microsoft.com/ru/" target="_blank">Visual Studio</a><br>
+						<a href="https://ru.code-basics.com/languages/csharp" target="_blank">C# для начинающих</a>
+					</p>
+				</div>
+			</div>
+			<div class="paths">
+				<p>
+					<input class="mybutton" id="getpathsbutton" type="button" value="Курсы обучения .NET от Microsoft">
+				</p>
+				<div id="pathslistdiv">
+				</div>
+			</div>
+			<div class="feedbackform">
+				<fieldset>
+					<legend>Обратная связь</legend>
+					<form method="post" action="http://localhost/feedback">
+						<p class="feedbackoption">
+							<label for="lastnameID">Фамилия: </label> <input id="lastnameID" class="inputfield" type="text" name="lastname" required>
+							<label for="nameID">Имя: </label> <input id="nameID" class="inputfield" type="text" name="name" required>
+							<label for="useremailID">Email: </label> <input class="inputfield" id="useremailID" type="email" name="useremail" required>
+						</p>
+						<p>
+							<textarea rows="10" id="questionarea" placeholder="Введите текст сообщения (не более 2000 символов)" 
+								maxlength="2000" name="question" required>
+							</textarea>
+						</p>
+						<p class="feedbackoption">
+							<label for="subjectID">Выберете тему:</label><br>
+							<select class="inputfield" id="subjectID" name="subject">
+								<option value="feedback">Отзыв</option>
+								<option value="question">Вопрос</option>
+								<option value="offer">Предложение</option>				
+							</select>
+						</p>
+						<p class="feedbackoption">
+							<label for="grade0ID">Оцените содержимое страницы: </label><br>
+							<input id="grade0ID" type="radio" value=0 name="grade"> 0
+							<input type="radio" value=1 name="grade"> 1
+							<input type="radio" value=2 name="grade"> 2
+							<input type="radio" value=3 name="grade"> 3
+							<input type="radio" value=4 name="grade"> 4
+							<input type="radio" value=5 name="grade" checked> 5
+						</p>
+						<p class="feedbackoption">
+							<input id="newsfeedID" type="checkbox" name="newsfeed" checked> <label for="newsfeedID">Подписаться на новостную рассылку.</label>
+						</p>
+						<p>
+							<input class="mybutton" id="submitbutton" type="submit" value="Отправить">
+						</p>
+					</form>
+				</fieldset>
+			</div>
+			<div class="footer">© Совков Владимир<br>2022</div>
+		</div>
+	</body>
+</html>

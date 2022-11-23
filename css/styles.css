@@ -1,0 +1,138 @@
+a
+{
+	text-decoration: none;
+}
+
+.bodybg 
+{
+	background-color: rgb(224, 224, 224);
+	background-image: url(../img/bg.svg);
+	background-repeat:repeat;
+	background-size: 5em;
+}
+
+.mysite
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0em 5em;
+}
+
+.header, .footer
+{
+	background-color: rgba(0, 125, 255, 0.5);
+	color: white;
+}
+
+.content, .feedbackform, .paths
+{
+	background-color: rgba(0, 200, 255, 0.5);
+}
+
+.mysite > div
+{
+		width: 100%;
+		text-align: center;
+		font-size: 1.5em;
+		font-family: Calibri;
+		overflow-wrap: break-word;
+}
+
+.header
+{
+	border-radius: 20px 20px 0px 0px;
+}
+
+.content
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: flex-start;
+}
+
+.column
+{
+	flex: 1;
+	padding: 0.5em;
+}
+
+.footer
+{
+	font-weight: bold;
+	border-radius: 0px 0px 20px 20px;
+}
+
+#logo
+{
+	width: 100%;
+}
+
+table, th, td
+{
+	border: 1px black solid;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+th
+{
+	background-color: rgba(0, 125, 255, 0.5);
+	color: white;
+}
+
+td
+{
+	background-color: rgba(0, 200, 255, 0.5);
+}
+
+.feedbackoption
+{
+	text-align: left;
+}
+
+.inputfield
+{
+	width:12em;
+}
+
+#questionarea
+{
+	resize: none;
+	width: 100%;
+}
+
+.mybutton
+{
+	background-color: rgba(0, 125, 255, 0.5);
+	color: white;
+	border-radius: 5px;
+	border: 1px black solid;
+	padding: 0.5em;
+	font-size: 1em;
+}
+
+.mybutton:hover
+{
+	background-color: rgba(0, 125, 200, 0.5);
+}
+
+.mybutton:active
+{
+	background-color: rgba(0, 150, 255, 0.5);
+}
+
+#submitbutton
+{
+	width:12em;
+}
+
+#installbutton
+{
+	position: fixed;
+	top: 1px;
+	left: 1px;
+}
