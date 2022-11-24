@@ -1,16 +1,29 @@
-function learnRequest(targetDiv){
-	var request = new XMLHttpRequest();
-	request.onload = () => showPaths(request, targetDiv);
-	request.open("GET", "https://learn.microsoft.com/api/learn/catalog?locale=ru-ru", true);
-	request.send();
+//Запрос курсов.
+async function learnRequest(targetDiv){
+	var response =  await fetch ("https://learn.microsoft.com/api/learn/catalog?locale=ru-ru");
+	showPaths(await response.json(), targetDiv);
 }
 
-function showPaths(request, targetDiv){
+//Запрос лога
+async function logRequest(targetArea){
+	var response =  await fetch ("https://log/logSW.html");
+	var logArray = await response.json();
+	logArray.forEach(showLog, targetArea);
+}
+
+//Вывод лога
+function showLog(e)
+{
+	this.innerHTML += e + "\n";
+}
+
+//Вывод курсов.
+function showPaths(response, targetDiv){
 	targetDiv.innerHTML="";
-	var response = JSON.parse(request.responseText);
 	response.learningPaths.forEach(addPath, targetDiv);
 }
 
+//Вывод курса.
 function addPath(e)
 {
 	if (!(e.products.includes("dotnet"))) 
@@ -40,13 +53,15 @@ function addPath(e)
 	this.append(div);
 }
 
-//Функция уведомлений.
+//Вывод уведомлений.
+let notificationsCount = 0;
+
 function randomNotification() {
 	//const randomItem = Math.floor(Math.random() * games.length);
 	//const notifTitle = games[randomItem].name;
-	const notifTitle = 'TestTitle';
+	const notifTitle = 'Новое уведомление!';
 	//const notifBody = `Created by ${games[randomItem].author}.`;
-	const notifBody = "Created by TestNotifBody";
+	const notifBody = "Это уведомление № " + ++notificationsCount + '.';
 	const notifImg = "icons/icon_96x96.png";
 	//const notifImg = "icon_96x96.png";
 	const options = {
@@ -57,6 +72,7 @@ function randomNotification() {
 	setTimeout(randomNotification, 30000);
 }
 
+//Кнопка курсов.
 var getPathsButton=document.getElementById("getpathsbutton");
 var pathsListDiv=document.getElementById("pathslistdiv");
 getPathsButton.addEventListener("click", () => learnRequest(pathsListDiv));
@@ -67,13 +83,14 @@ if ("serviceWorker" in navigator) {
 }
 
 //Кнопка уведомлений.
-const button = document.getElementById("notifications");
-button.addEventListener("click", () => {
+const notificationsButton = document.getElementById("notificationsbutton");
+notificationsButton.addEventListener("click", () => {
 	Notification.requestPermission().then((result) => {
 		if (result === "granted") {
 			randomNotification();
 		}
 	});
+	notificationsButton.style.display = "none";
 });
 
 //Кнопка инсталляции.
@@ -89,11 +106,21 @@ this.addEventListener("beforeinstallprompt", (e) => {
 		deferredPrompt.prompt();
 		deferredPrompt.userChoice.then((choiceResult) => {
 			if (choiceResult.outcome === "accepted") {
-				console.log("User accepted the A2HS prompt");
+				console.log("Пользователь согласился на установку A2HS.");
 			} else {
-				console.log("User dismissed the A2HS prompt");
+				console.log("Пользователь отказался от установки A2HS.");
 			}
 			deferredPrompt = null;
 		});
 	});
 });
+
+
+//Кнопка лога
+const logButton = document.getElementById("logbutton");
+logButton.addEventListener("click", () => {
+	var logArea = document.getElementById("logarea");
+	logRequest(logArea);
+});
+
+

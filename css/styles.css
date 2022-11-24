@@ -26,7 +26,7 @@ a
 	color: white;
 }
 
-.content, .feedbackform, .paths
+.content, .feedbackform, .paths, .logSW
 {
 	background-color: rgba(0, 200, 255, 0.5);
 }
@@ -105,6 +105,12 @@ td
 	width: 100%;
 }
 
+#logarea
+{
+	resize: none;
+	width: 99%;
+}
+
 .mybutton
 {
 	background-color: rgba(0, 125, 255, 0.5);
@@ -130,7 +136,7 @@ td
 	width:12em;
 }
 
-#installbutton
+#fixedbuttons
 {
 	position: fixed;
 	top: 1px;

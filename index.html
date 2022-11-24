@@ -12,8 +12,10 @@
 		<div class="mysite">
 			<div class="header">
 				<h1>Краткая информация о языке программирования C#.</h1>
-				<button class="mybutton" id="notifications">Получать уведомления</button>
-				<button class="mybutton" id="installbutton">Установить</button>
+				<div id="fixedbuttons">
+					<input class="mybutton" id="notificationsbutton" type="button" value="Включить уведомления">
+					<input class="mybutton" id="installbutton" type="button" value="Установить">
+				</div>
 			</div>
 			<div class="content">
 				<div class="column">
@@ -86,47 +88,15 @@
 				<div id="pathslistdiv">
 				</div>
 			</div>
-			<div class="feedbackform">
-				<fieldset>
-					<legend>Обратная связь</legend>
-					<form method="post" action="http://localhost/feedback">
-						<p class="feedbackoption">
-							<label for="lastnameID">Фамилия: </label> <input id="lastnameID" class="inputfield" type="text" name="lastname" required>
-							<label for="nameID">Имя: </label> <input id="nameID" class="inputfield" type="text" name="name" required>
-							<label for="useremailID">Email: </label> <input class="inputfield" id="useremailID" type="email" name="useremail" required>
-						</p>
-						<p>
-							<textarea rows="10" id="questionarea" placeholder="Введите текст сообщения (не более 2000 символов)" 
-								maxlength="2000" name="question" required>
-							</textarea>
-						</p>
-						<p class="feedbackoption">
-							<label for="subjectID">Выберете тему:</label><br>
-							<select class="inputfield" id="subjectID" name="subject">
-								<option value="feedback">Отзыв</option>
-								<option value="question">Вопрос</option>
-								<option value="offer">Предложение</option>				
-							</select>
-						</p>
-						<p class="feedbackoption">
-							<label for="grade0ID">Оцените содержимое страницы: </label><br>
-							<input id="grade0ID" type="radio" value=0 name="grade"> 0
-							<input type="radio" value=1 name="grade"> 1
-							<input type="radio" value=2 name="grade"> 2
-							<input type="radio" value=3 name="grade"> 3
-							<input type="radio" value=4 name="grade"> 4
-							<input type="radio" value=5 name="grade" checked> 5
-						</p>
-						<p class="feedbackoption">
-							<input id="newsfeedID" type="checkbox" name="newsfeed" checked> <label for="newsfeedID">Подписаться на новостную рассылку.</label>
-						</p>
-						<p>
-							<input class="mybutton" id="submitbutton" type="submit" value="Отправить">
-						</p>
-					</form>
-				</fieldset>
+			<div class="logSW">
+				<p>
+					<textarea rows="20" id="logarea" placeholder="Лог Service Worker'a." readonly ></textarea>
+				</p>
+				<p>
+					<input class="mybutton" id="logbutton" type="submit" value="Вывести лог Service Worker'a.">
+				</p>
 			</div>
-			<div class="footer">© Совков Владимир<br>2022</div>
+			<div class="footer">© Совков Владимир<br>зЛПб-ИСиТ-18-2<br>2022</div>
 		</div>
 	</body>
 </html>

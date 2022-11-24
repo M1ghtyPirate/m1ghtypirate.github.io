@@ -18,45 +18,64 @@ const appShellFiles = [
 	'icons/icon_828x1792.png',
 ];
 
-//const gamesImages = [];
-//for (let i = 0; i < games.length; i++) {
-//  gamesImages.push(`data/img/${games[i].slug}.jpg`);
-//}
-//const contentToCache = appShellFiles.concat(gamesImages);
-const contentToCache = appShellFiles;
-console.log('SUCCESS');
+//Запись в лог
+function logEvent (logText)
+{
+	logText = '[' + new Date().toLocaleString() + '] ' + logText;
+	console.log(logText);
+	logSW.push(logText);
+}
 
+const contentToCache = appShellFiles;
+let logSW = [];
+logEvent('Download - SW скачан и запущен.');
+
+//Установка.
 self.addEventListener('install', (e) => {
-	console.log('[Service Worker] Install');
+	logEvent('Installation - SW установлен.');
 	e.waitUntil((async () => {
 		const cache = await caches.open(cacheName);
-		console.log('[Service Worker] Caching all: app shell and content');
+		logEvent('Installation - Кэширование ресурсов.');
 		await cache.addAll(contentToCache);
 	})());
 });
 
+//Проверка кэша.
 self.addEventListener('activate', (e) => {
-	console.log('[Service Worker] Activate');
+	logEvent('Activation - Проверка кэша.');
 	e.waitUntil(caches.keys().then((keyList) => {
 		return Promise.all(keyList.map((key) => {
 			if (key === cacheName) { return; }
 				{
-				console.log('[Service Worker] Deleting ${key} from cache');
+				logEvent('Activation - Удаление ' +  key + ' из кэша.');
 				return caches.delete(key); }
 		}));
 	}));
 });
 
+
+//Перехват запросов.
 self.addEventListener('fetch', (e) => {
-	console.log('[Service Worker] Fetch');
+	logEvent('Fetch - Перехват запросов.');
 	e.respondWith((async () => {
 		const r = await caches.match(e.request);
-		console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
-		if (r) { return r; }
+		logEvent('Fetch - Запрос: '+ e.request.url);
+		if (e.request.url == "https://log/logSW.html") {
+			logEvent('Fetch - Возвращение лога: '+ e.request.url);
+			var responseLog = new Response(JSON.stringify(logSW));
+			logSW = [];
+			return responseLog; 
+		}
+		
+		if (r) { 
+			logEvent('Fetch - Возвращение ответа из кэша: '+ e.request.url);
+		}
+		logEvent('Fetch - Отправка запроса: '+ e.request.url);
 		const response = await fetch(e.request);
 		const cache = await caches.open(cacheName);
-		console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
+		logEvent('Fetch - Кэширование полученного ответа: '+ e.request.url);
 		cache.put(e.request, response.clone());
+		logEvent('Fetch - Возвращение полученного ответа: '+ e.request.url);
 		return response;
 	})());
 });
