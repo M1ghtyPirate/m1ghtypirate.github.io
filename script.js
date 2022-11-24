@@ -67,8 +67,13 @@ function randomNotification() {
 	const options = {
 		body: notifBody,
 		icon: notifImg,
+		vibrate: [200, 200]
 	};
-	new Notification(notifTitle, options);
+	//new Notification(notifTitle, options);
+	navigator.serviceWorker.ready.then((registration) => {
+        registration.showNotification(notifTitle, options);
+	});
+	
 	setTimeout(randomNotification, 30000);
 }
 
